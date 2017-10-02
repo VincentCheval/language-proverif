@@ -1,6 +1,6 @@
 {
   "name": "language-proverif",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "ProVerif language support in Atom",
   "engines": {
     "atom": "*"
