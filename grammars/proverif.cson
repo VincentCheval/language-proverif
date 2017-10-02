@@ -19,7 +19,15 @@
         'name': 'constant.numeric'
   }
   {
-    'match': '(free|const|fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)\\.'
+    'match': '(set)\\s+(\\w+)\\s*='
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'name': 'support.constant.proverif'
+  }
+  {
+    'match': '(free|const|fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)\\s*(\\.)'
     'name': 'meta.declaration.proverif'
     'captures':
       '1':
@@ -42,6 +50,8 @@
             'include': '#type_declaration'
           }
         ]
+      '8':
+        'name': 'keyword'
   }
   {
     'name': 'meta.letfun_declaration.proverif'
