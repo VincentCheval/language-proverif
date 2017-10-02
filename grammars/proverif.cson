@@ -74,7 +74,7 @@
         ]
   }
   {
-    'match': '\\b(insert|get|event|if|then|else|suchthat|query|let|new|process|reduc|forall)\\b'
+    'match': '\\b(insert|get|event|if|then|else|suchthat|query|let|new|process|reduc|forall|otherwise)\\b'
     'name': 'keyword.control.proverif'
   }
   {
@@ -92,6 +92,10 @@
   {
     'match': '\\|;|\\.'
     'name': 'keyword'
+  }
+  {
+    'match': 'true|false'
+    'name': 'constant.language'
   }
 ]
 'repository':
