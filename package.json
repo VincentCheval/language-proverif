@@ -1,0 +1,17 @@
+{
+  "name": "language-proverif",
+  "version": "0.0.0",
+  "description": "ProVerif language support in Atom",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VincentCheval/language-proverif.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VincentCheval/language-proverif/issues"
+  },
+  "license": "MIT"
+}

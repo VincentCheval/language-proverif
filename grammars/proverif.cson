@@ -1,0 +1,158 @@
+'fileTypes': ['pv']
+'name': 'ProVerif'
+'scopeName': 'source.proverif'
+
+'patterns': [
+  {
+    'match': '//.*'
+    'name': 'comment.line'
+  }
+  {
+    'name': 'comment.multiline'
+    'begin': '\\(\\*'
+    'end': '\\*\\)'
+  }
+  {
+    'match': '\\b([0-9]+)\\b'
+    'captures':
+      '1':
+        'name': 'constant.numeric'
+  }
+  {
+    'match': '(free|const|fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)'
+    'name': 'meta.declaration.proverif'
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'name': 'entity.name.function.proverif'
+      '3':
+        'patterns': [
+          {
+            'include': '#options'
+          }
+          {
+            'match': ':\\s*(\\w+)'
+            'name': 'meta.type_declaration.proverif'
+            'captures':
+              '1':
+                'name': 'entity.name.type.proverif'
+          }
+          {
+            'include': '#type_declaration'
+          }
+        ]
+  }
+  {
+    'name': 'meta.letfun_declaration.proverif'
+    'match': '(letfun)\\s+(\\w+)([^=]*)='
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'name': 'entity.name.function.proverif'
+      '3':
+        'patterns': [
+          {
+            'include': '#arguments'
+          }
+    ]
+  }
+  {
+    'name': 'meta.let_process_declaration.proverif'
+    'match': '(let)\\s+(\\w+)\\s*(\\((:|\\w|\\s|,)+\\))?\\s*='
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'name': 'entity.name.function.proverif'
+      '3':
+        'patterns': [
+          {
+            'include': '#arguments'
+          }
+        ]
+  }
+  {
+    'match': '\\b(insert|get|event|if|then|else|suchthat|query|let|new|process|reduc|forall)\\b'
+    'name': 'keyword.control.proverif'
+  }
+  {
+    'match': '\\b(in|out|attacker)\\s*(\\(|\\b)'
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+  }
+  {
+    'include': '#boolean'
+  }
+  {
+    'include': '#pattern'
+  }
+  {
+    'match': '\\|;|\\.'
+    'name': 'keyword'
+  }
+]
+'repository':
+  'options':
+    'patterns': [
+      {
+        'begin': '\\['
+        'end': '\\]'
+        'name': 'meta.options_declaration.proverif'
+        'patterns': [
+          'match': '\\w+'
+          'name': 'entity.name.tag.proverif'
+        ]
+      }
+    ]
+
+  'type_declaration':
+    'patterns': [
+      {
+        'begin': '\\('
+        'end': '\\)'
+        'name': 'meta.argument_types_declaration.proverif'
+        'patterns': [
+          'match': '\\w+'
+          'name': 'entity.name.type.proverif'
+        ]
+      }
+    ]
+
+  'arguments':
+    'patterns': [
+      {
+        'begin': '\\('
+        'end': '\\)'
+        'name': 'meta.arguments_declaration.proverif'
+        'patterns': [
+          {
+            'include': '#pattern'
+          }
+        ]
+      }
+    ]
+
+  'pattern':
+    'patterns': [
+      {
+        'match': '(\\w+)\\s*:\\s*(\\w+)'
+        'captures':
+          '1':
+            'name': 'variable.other.proverif'
+          '2':
+            'name': 'entity.name.type.proverif'
+      }
+    ]
+
+  'boolean':
+    'patterns': [
+      {
+        'match': '(=|\\sor\\s|\\sand\\s|==>|\\|\\||<|<=|>=|>)'
+        'captures':
+          '1':
+            'name': 'support.function.pervasives.boolean-operatons.proverif'
+      }
+    ]
