@@ -19,7 +19,7 @@
         'name': 'constant.numeric'
   }
   {
-    'match': '(free|const|fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)'
+    'match': '(free|const|fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)\\.'
     'name': 'meta.declaration.proverif'
     'captures':
       '1':
