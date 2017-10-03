@@ -27,7 +27,30 @@
         'name': 'support.constant.proverif'
   }
   {
-    'match': '(free|const|fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)\\s*(\\.)'
+    'match': '(free|const)\\s+((\\w|,|\\s|\')+)\\s*:\\s*((\\w|\')+)\\s*(\\[.+\\])?(\\.)'
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'patterns': [
+          {
+            'match': '(\\w|\')+'
+            'name': 'entity.name.function.proverif'
+          }
+        ]
+      '4':
+        'name': 'entity.name.type.proverif'
+      '6':
+        'patterns': [
+          {
+            'include': '#options'
+          }
+        ]
+      '7':
+        'name': 'keyword.proverif'
+  }
+  {
+    'match': '(fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)\\s*(\\.)'
     'name': 'meta.declaration.proverif'
     'captures':
       '1':
@@ -52,6 +75,43 @@
         ]
       '8':
         'name': 'keyword'
+  }
+  {
+    'begin': '(fun)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?.*)\\n'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'name': 'entity.name.function.proverif'
+      '3':
+        'patterns': [
+          {
+            'begin': '\\(\\*'
+            'end': '\\*\\)'
+            'name': 'comment.block'
+          }
+          {
+            'match': ':\\s*(\\w+)'
+            'name': 'meta.type_declaration.proverif'
+            'captures':
+              '1':
+                'name': 'entity.name.type.proverif'
+          }
+          {
+            'include': '#type_declaration'
+          }
+        ]
+    'end': 'reduc'
+    'endCaptures':
+      '0':
+        'name': 'keyword.control.proverif'
+    'name': 'meta.declaration_funreduc.proverif'
+    'patterns': [
+      {
+        'match': '\\(\\*.*\\*\\)'
+        'name': 'keyword'
+      }
+    ]
   }
   {
     'name': 'meta.letfun_declaration.proverif'
@@ -100,7 +160,7 @@
     'include': '#pattern'
   }
   {
-    'match': '\\|;|\\.'
+    'match': '(\\||;|\\.)'
     'name': 'keyword'
   }
   {
