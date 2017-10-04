@@ -50,20 +50,20 @@
         'name': 'keyword.proverif'
   }
   {
-    'match': '(fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)\\s*(\\.)'
+    'match': '(fun|event|table|pred|type)\\s+((\\w|\')+)\\s*((\\(.+\\))?\\s*(:\\s*((\\w|\')+))?\\s*(\\[.+\\])?)\\s*(\\.)'
     'name': 'meta.declaration.proverif'
     'captures':
       '1':
         'name': 'keyword.control.proverif'
       '2':
         'name': 'entity.name.function.proverif'
-      '3':
+      '4':
         'patterns': [
           {
             'include': '#options'
           }
           {
-            'match': ':\\s*(\\w+)'
+            'match': ':\\s*((\\w|\')+)'
             'name': 'meta.type_declaration.proverif'
             'captures':
               '1':
@@ -73,17 +73,17 @@
             'include': '#type_declaration'
           }
         ]
-      '8':
+      '10':
         'name': 'keyword'
   }
   {
-    'begin': '(fun)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?.*)\\n'
+    'begin': '(fun)\\s+((\\w|\')+)\\s*((\\(.+\\))?\\s*(:\\s*((\\w|\')+))?.*)\\n'
     'beginCaptures':
       '1':
         'name': 'keyword.control.proverif'
       '2':
         'name': 'entity.name.function.proverif'
-      '3':
+      '4':
         'patterns': [
           {
             'begin': '\\(\\*'
@@ -91,7 +91,7 @@
             'name': 'comment.block'
           }
           {
-            'match': ':\\s*(\\w+)'
+            'match': ':\\s*((\\w|\')+)'
             'name': 'meta.type_declaration.proverif'
             'captures':
               '1':
@@ -108,20 +108,21 @@
     'name': 'meta.declaration_funreduc.proverif'
     'patterns': [
       {
-        'match': '\\(\\*.*\\*\\)'
-        'name': 'keyword'
+        'begin': '\\(\\*'
+        'end': '\\*\\)'
+        'name': 'comment.block'
       }
     ]
   }
   {
     'name': 'meta.letfun_declaration.proverif'
-    'match': '(letfun)\\s+(\\w+)([^=]*)='
+    'match': '(letfun)\\s+((\\w|\')+)([^=]*)='
     'captures':
       '1':
         'name': 'keyword.control.proverif'
       '2':
         'name': 'entity.name.function.proverif'
-      '3':
+      '4':
         'patterns': [
           {
             'include': '#arguments'
@@ -130,13 +131,13 @@
   }
   {
     'name': 'meta.let_process_declaration.proverif'
-    'match': '(let)\\s+(\\w+)\\s*(\\((:|\\w|\\s|,)+\\))?\\s*='
+    'match': '(let)\\s+((\\w|\')+)\\s*(\\((:|\\w|\\s|,|\')+\\))?\\s*='
     'captures':
       '1':
         'name': 'keyword.control.proverif'
       '2':
         'name': 'entity.name.function.proverif'
-      '3':
+      '4':
         'patterns': [
           {
             'include': '#arguments'
@@ -176,7 +177,7 @@
         'end': '\\]'
         'name': 'meta.options_declaration.proverif'
         'patterns': [
-          'match': '\\w+'
+          'match': '(\\w|\')+'
           'name': 'entity.name.tag.proverif'
         ]
       }
@@ -189,7 +190,7 @@
         'end': '\\)'
         'name': 'meta.argument_types_declaration.proverif'
         'patterns': [
-          'match': '\\w+'
+          'match': '(\\w|\')+'
           'name': 'entity.name.type.proverif'
         ]
       }
@@ -212,11 +213,11 @@
   'pattern':
     'patterns': [
       {
-        'match': '(\\w+)\\s*:\\s*(\\w+)'
+        'match': '((\\w|\')+)\\s*:\\s*((\\w|\')+)'
         'captures':
           '1':
             'name': 'variable.other.proverif'
-          '2':
+          '3':
             'name': 'entity.name.type.proverif'
       }
     ]
