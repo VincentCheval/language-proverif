@@ -50,6 +50,29 @@
         'name': 'keyword.proverif'
   }
   {
+    'match': '(new)\\s+((\\w|\')+)\\s*(\\[.*\\])?\\s*:\\s*((\\w|\')+)\\s*(\\[.+\\])?'
+    'name': 'meta.declaration_name'
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'name': 'entity.name.function.proverif'
+      '4':
+        'patterns': [
+          {
+            'include': '#options'
+          }
+        ]
+      '5':
+        'name': 'entity.name.type.proverif'
+      '7':
+        'patterns': [
+          {
+            'include': '#options'
+          }
+        ]
+  }
+  {
     'match': '(fun|event|table|pred|type)\\s+((\\w|\')+)\\s*((\\(.+\\))?\\s*(:\\s*((\\w|\')+))?\\s*(\\[.+\\])?)\\s*(\\.)'
     'name': 'meta.declaration.proverif'
     'captures':
