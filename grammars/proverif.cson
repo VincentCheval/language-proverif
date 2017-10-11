@@ -73,7 +73,7 @@
         ]
   }
   {
-    'match': '(fun|event|table|pred|type)\\s+((\\w|\')+)\\s*((\\(.+\\))?\\s*(:\\s*((\\w|\')+))?\\s*(\\[.+\\])?)\\s*(\\.)'
+    'match': '(fun|event|table|pred|type)\\s+((\\w|\')+)\\s*((\\(.*\\))?\\s*(:\\s*((\\w|\')+))?\\s*(\\[.+\\])?)\\s*(\\.)'
     'name': 'meta.declaration.proverif'
     'captures':
       '1':
@@ -168,11 +168,11 @@
         ]
   }
   {
-    'match': '\\b(insert|get|event|if|then|else|suchthat|query|let|new|process|reduc|forall|otherwise)\\b'
+    'match': '\\b(insert|get|event|if|then|else|suchthat|query|let|new|process|reduc|forall|otherwise|equation|phase|inj-event)\\b'
     'name': 'keyword.control.proverif'
   }
   {
-    'match': '\\b(in|out|attacker)\\s*(\\(|\\b)'
+    'match': '\\b(in|out|attacker)(\\s*\\([^\\*]|\\b)'
     'captures':
       '1':
         'name': 'keyword.control.proverif'
