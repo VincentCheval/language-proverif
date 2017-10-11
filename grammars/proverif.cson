@@ -172,6 +172,14 @@
     'name': 'keyword.control.proverif'
   }
   {
+    'match': '\\b(among|channel|choice|clauses|def|diff|elimtrue|equivalence|expand|noninterf|putbegin|nounif|param|proba|proof|sync|weaksecret|sync)\\b'
+    'name': 'keyword.control.proverif'
+  }
+  {
+    'match': '\\bfail\\b'
+    'name': 'constant.language'
+  }
+  {
     'match': '\\b(in|out|attacker)(\\s*\\([^\\*]|\\b)'
     'captures':
       '1':
@@ -248,7 +256,13 @@
   'boolean':
     'patterns': [
       {
-        'match': '(=|\\sor\\s|\\sand\\s|==>|\\|\\||<|<=|>=|>)'
+        'match': '(=|==>|\\|\\||<|<=|>=|>)'
+        'captures':
+          '1':
+            'name': 'support.function.pervasives.boolean-operatons.proverif'
+      }
+      {
+        'match': '\\b(and|not|or)\\b'
         'captures':
           '1':
             'name': 'support.function.pervasives.boolean-operatons.proverif'
