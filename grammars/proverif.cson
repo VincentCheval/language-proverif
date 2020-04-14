@@ -4,10 +4,6 @@
 
 'patterns': [
   {
-    'match': '//.*'
-    'name': 'comment.line'
-  }
-  {
     'name': 'comment.multiline'
     'begin': '\\(\\*'
     'end': '\\*\\)'
