@@ -23,20 +23,66 @@
         'name': 'support.constant.proverif'
   }
   {
-    'match': '(free|const|fun|event|table|pred|type)\\s+(\\w+)\\s*((\\(.+\\))?\\s*(:\\s*(\\w+))?\\s*(\\[.+\\])?)\\s*(\\.)'
+    'match': '(free|const)\\s+((\\w|,|\\s|\')+)\\s*:\\s*((\\w|\')+)\\s*(\\[.+\\])?(\\.)'
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'patterns': [
+          {
+            'match': '(\\w|\')+'
+            'name': 'entity.name.function.proverif'
+          }
+        ]
+      '4':
+        'name': 'entity.name.type.proverif'
+      '6':
+        'patterns': [
+          {
+            'include': '#options'
+          }
+        ]
+      '7':
+        'name': 'keyword.proverif'
+  }
+  {
+    'match': '(new)\\s+((\\w|\')+)\\s*(\\[.*\\])?\\s*:\\s*((\\w|\')+)\\s*(\\[.+\\])?'
+    'name': 'meta.declaration_name'
+    'captures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'name': 'entity.name.function.proverif'
+      '4':
+        'patterns': [
+          {
+            'include': '#options'
+          }
+        ]
+      '5':
+        'name': 'entity.name.type.proverif'
+      '7':
+        'patterns': [
+          {
+            'include': '#options'
+          }
+        ]
+  }
+  {
+    'match': '(fun|event|table|pred|type)\\s+((\\w|\')+)\\s*((\\(.*\\))?\\s*(:\\s*((\\w|\')+))?\\s*(\\[.+\\])?)\\s*(\\.)'
     'name': 'meta.declaration.proverif'
     'captures':
       '1':
         'name': 'keyword.control.proverif'
       '2':
         'name': 'entity.name.function.proverif'
-      '3':
+      '4':
         'patterns': [
           {
             'include': '#options'
           }
           {
-            'match': ':\\s*(\\w+)'
+            'match': ':\\s*((\\w|\')+)'
             'name': 'meta.type_declaration.proverif'
             'captures':
               '1':
@@ -46,18 +92,56 @@
             'include': '#type_declaration'
           }
         ]
-      '8':
+      '10':
         'name': 'keyword'
   }
   {
+    'begin': '(fun)\\s+((\\w|\')+)\\s*((\\(.+\\))?\\s*(:\\s*((\\w|\')+))?.*)\\n'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.proverif'
+      '2':
+        'name': 'entity.name.function.proverif'
+      '4':
+        'patterns': [
+          {
+            'begin': '\\(\\*'
+            'end': '\\*\\)'
+            'name': 'comment.block'
+          }
+          {
+            'match': ':\\s*((\\w|\')+)'
+            'name': 'meta.type_declaration.proverif'
+            'captures':
+              '1':
+                'name': 'entity.name.type.proverif'
+          }
+          {
+            'include': '#type_declaration'
+          }
+        ]
+    'end': 'reduc'
+    'endCaptures':
+      '0':
+        'name': 'keyword.control.proverif'
+    'name': 'meta.declaration_funreduc.proverif'
+    'patterns': [
+      {
+        'begin': '\\(\\*'
+        'end': '\\*\\)'
+        'name': 'comment.block'
+      }
+    ]
+  }
+  {
     'name': 'meta.letfun_declaration.proverif'
-    'match': '(letfun)\\s+(\\w+)([^=]*)='
+    'match': '(letfun)\\s+((\\w|\')+)([^=]*)='
     'captures':
       '1':
         'name': 'keyword.control.proverif'
       '2':
         'name': 'entity.name.function.proverif'
-      '3':
+      '4':
         'patterns': [
           {
             'include': '#arguments'
@@ -66,13 +150,13 @@
   }
   {
     'name': 'meta.let_process_declaration.proverif'
-    'match': '(let)\\s+(\\w+)\\s*(\\((:|\\w|\\s|,)+\\))?\\s*='
+    'match': '(let)\\s+((\\w|\')+)\\s*(\\((:|\\w|\\s|,|\')+\\))?\\s*='
     'captures':
       '1':
         'name': 'keyword.control.proverif'
       '2':
         'name': 'entity.name.function.proverif'
-      '3':
+      '4':
         'patterns': [
           {
             'include': '#arguments'
@@ -80,11 +164,19 @@
         ]
   }
   {
-    'match': '\\b(insert|get|event|if|then|else|suchthat|query|let|new|process|reduc|forall|otherwise)\\b'
+    'match': '\\b(insert|get|event|if|then|else|suchthat|query|let|new|process|reduc|forall|otherwise|equation|phase|inj-event)\\b'
     'name': 'keyword.control.proverif'
   }
   {
-    'match': '\\b(in|out|attacker)\\s*(\\(|\\b)'
+    'match': '\\b(among|channel|choice|clauses|def|diff|elimtrue|equivalence|expand|noninterf|putbegin|nounif|param|proba|proof|sync|weaksecret|sync)\\b'
+    'name': 'keyword.control.proverif'
+  }
+  {
+    'match': '\\bfail\\b'
+    'name': 'constant.language'
+  }
+  {
+    'match': '\\b(in|out|attacker)(\\s*\\([^\\*]|\\b)'
     'captures':
       '1':
         'name': 'keyword.control.proverif'
@@ -96,7 +188,7 @@
     'include': '#pattern'
   }
   {
-    'match': '\\|;|\\.'
+    'match': '(\\||;|\\.)'
     'name': 'keyword'
   }
   {
@@ -112,7 +204,7 @@
         'end': '\\]'
         'name': 'meta.options_declaration.proverif'
         'patterns': [
-          'match': '\\w+'
+          'match': '(\\w|\')+'
           'name': 'entity.name.tag.proverif'
         ]
       }
@@ -125,7 +217,7 @@
         'end': '\\)'
         'name': 'meta.argument_types_declaration.proverif'
         'patterns': [
-          'match': '\\w+'
+          'match': '(\\w|\')+'
           'name': 'entity.name.type.proverif'
         ]
       }
@@ -148,11 +240,11 @@
   'pattern':
     'patterns': [
       {
-        'match': '(\\w+)\\s*:\\s*(\\w+)'
+        'match': '((\\w|\')+)\\s*:\\s*((\\w|\')+)'
         'captures':
           '1':
             'name': 'variable.other.proverif'
-          '2':
+          '3':
             'name': 'entity.name.type.proverif'
       }
     ]
@@ -160,7 +252,13 @@
   'boolean':
     'patterns': [
       {
-        'match': '(=|\\sor\\s|\\sand\\s|==>|\\|\\||<|<=|>=|>)'
+        'match': '(=|==>|\\|\\||<|<=|>=|>)'
+        'captures':
+          '1':
+            'name': 'support.function.pervasives.boolean-operatons.proverif'
+      }
+      {
+        'match': '\\b(and|not|or)\\b'
         'captures':
           '1':
             'name': 'support.function.pervasives.boolean-operatons.proverif'
