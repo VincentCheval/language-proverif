@@ -1,11 +1,13 @@
 {
   "name": "language-proverif",
-  "version": "1.6.0",
+  "version": "1.2.0",
   "description": "ProVerif language support in Atom",
   "engines": {
     "atom": "*"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tree-sitter-proverif": "^1.0.6"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/VincentCheval/language-proverif.git"

@@ -1,0 +1,187 @@
+name: 'ProVerif'
+scopeName: 'proverif'
+type: 'tree-sitter'
+parser: 'tree-sitter-proverif'
+fileTypes: [
+  'pv'
+  'pvl'
+]
+scopes:
+  'comment': 'comment.block'
+
+  'type_declaration > "type"': 'keyword.control.proverif'
+  'type_declaration > ident': 'entity.name.type.proverif'
+  'type_declaration > "."': 'keyword.proverif'
+
+  'fun_declaration > "fun"': 'keyword.control.proverif'
+  'fun_declaration > ident': 'entity.name.function.proverif'
+
+  'const_declaration > ident' : 'support.constant'
+  'free_declaration > ident' : 'support.constant'
+  'channel_declaration > ident' : 'support.constant'
+
+  'event_declaration > "event"' : 'keyword.control.proverif'
+  'event_declaration > ident' : 'entity.name.function.proverif'
+
+  'table_declaration > "table"' : 'keyword.control.proverif'
+  'table_declaration > ident' : 'entity.name.function.proverif'
+
+  'process_declaration > "="' : 'keyword.operator'
+  'process_declaration > ident': 'entity.name.function.proverif'
+  'letfun_declaration > "="' : 'keyword.operator'
+  'letfun_declaration > ident': 'entity.name.function.proverif'
+  'setting_declaration > "="' : 'keyword.operator'
+
+  'define_declaration > ident' : 'entity.name.function.proverif'
+  'expand_declaration > ident' : 'entity.name.function.proverif'
+
+  'not_declaration > "not"' : 'keyword.control.proverif'
+
+  'option': 'entity.name.tag.proverif'
+
+  'typeid': 'entity.name.type.proverif'
+
+  'variables_type > ident': 'variable.other.proverif'
+
+  'mayfail_variables_type > ident': 'variable.other.proverif'
+  'mayfail_variables_type > "or"' : 'keyword.control.proverif'
+  'mayfail_variables_type > "fail"' : 'keyword.control.proverif'
+
+  'nounif > "="' : 'keyword.operator'
+  'nounif > "/"' : 'keyword.operator'
+
+  'nounif > ident': [ {exact: 'attacker', scopes: 'keyword.control.proverif'} ]
+  'nounif > ident': [ {exact: 'mess', scopes: 'keyword.control.proverif'} ]
+  'nounif > "table"': 'storage.type',
+  'nounif > "event"': 'storage.type',
+
+  'gformat > "="' : 'keyword.operator'
+  'gformat > "*"' : 'keyword.operator'
+
+  'term > "fail"' : 'constant.language'
+
+  'term > "="' : 'support.function.pervasives.boolean-operatons.proverif'
+  'term > "<>"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'term > "not"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'term > ">"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'term > "<"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'term > "=>"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'term > "<="' : 'support.function.pervasives.boolean-operatons.proverif'
+
+  'binding > ident' : 'variable.other.proverif'
+  'binding > "="' : 'keyword.operator'
+
+  'qterm:nth-child(3) > ident': {exact: '=', scopes: 'keyword.operator'}
+
+  'qterm > "="' : 'support.function.pervasives.boolean-operatons.proverif'
+  'qterm > "<>"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'qterm > "not"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'qterm > ">"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'qterm > "<"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'qterm > "=>"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'qterm > "<="' : 'support.function.pervasives.boolean-operatons.proverif'
+
+  'qterm > "==>"' : 'keyword.operator'
+
+  'qterm > "event"': 'keyword.control.proverif'
+  'qterm > "inj-event"': 'keyword.control.proverif'
+  'qterm > "table"': 'keyword.control.proverif'
+
+  'at_ident > ident' : 'variable.other.proverif'
+
+  'basic_pattern > ident' : 'variable.other.proverif'
+
+  'tpattern > ident' : 'entity.name.function.proverif'
+  'tpattern > "="' : 'support.function.pervasives.boolean-operatons.proverif'
+
+  'pterm:nth-child(3) > ident': {exact: '"="', scopes: 'keyword.operator'}
+
+  'pterm > "="' : 'support.function.pervasives.boolean-operatons.proverif'
+  'pterm > "<>"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'pterm > "not"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'pterm > ">"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'pterm > "<"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'pterm > "=>"' : 'support.function.pervasives.boolean-operatons.proverif'
+  'pterm > "<="' : 'support.function.pervasives.boolean-operatons.proverif'
+
+  'pterm > "event"' : 'keyword.control.proverif'
+
+  'query > "event"' : 'keyword.control.proverif'
+  'query > "inj-event"' : 'keyword.control.proverif'
+
+  'tprocess > "0"' : 'keyword.control.proverif'
+  'tprocess:nth-child(3) > ident': {exact: '"="', scopes: 'keyword.operator'}
+  'tprocess > "event"' : 'keyword.control.proverif'
+
+  '"query"' : 'keyword.control.proverif'
+  '"axiom"' : 'keyword.control.proverif'
+  '"restriction"' : 'keyword.control.proverif'
+  '"lemma"' : 'keyword.control.proverif'
+  '"reduc"' : 'keyword.control.proverif'
+  '"free"' : 'keyword.control.proverif'
+  '"const"' : 'keyword.control.proverif'
+  '"equation"' : 'keyword.control.proverif'
+  '"pred"' : 'keyword.control.proverif'
+  '"letfun"' : 'keyword.control.proverif'
+  '"set"' : 'keyword.control.proverif'
+  '"nounif"' : 'keyword.control.proverif'
+  '"weaksecret"' : 'keyword.control.proverif'
+  '"param"' : 'keyword.control.proverif'
+  '"proba"' : 'keyword.control.proverif'
+  '"proof"' : 'keyword.control.proverif'
+  '"implementation"' : 'keyword.control.proverif'
+  '"elimtrue"' : 'keyword.control.proverif'
+  '"free"' : 'keyword.control.proverif'
+  '"clauses"' : 'keyword.control.proverif'
+  '"forall"' : 'keyword.control.proverif'
+  '"otherwise"' : 'keyword.control.proverif'
+  '"among"' : 'keyword.control.proverif'
+  '"noninterf"' : 'keyword.control.proverif'
+  '"let"' : 'keyword.control.proverif'
+  '"new"' : 'keyword.control.proverif'
+  '"if"' : 'keyword.control.proverif'
+  '"else"' : 'keyword.control.proverif'
+  '"in"' : 'keyword.control.proverif'
+  '"out"' : 'keyword.control.proverif'
+  '"then"' : 'keyword.control.proverif'
+  '"suchthat"' : 'keyword.control.proverif'
+  '"get"' : 'keyword.control.proverif'
+  '"insert"' : 'keyword.control.proverif'
+  '"!"' : 'keyword.control.proverif'
+  '"yield"' : 'keyword.control.proverif'
+  '"<-R"' : 'keyword.control.proverif'
+  '"sync"' : 'keyword.control.proverif'
+  '"process"' : 'keyword.control.proverif'
+  '"equivalence"' : 'keyword.control.proverif'
+  '"."' : 'keyword.control.proverif'
+
+  '"secret"' : 'keyword.control.proverif'
+  '"public_vars"' : 'keyword.control.proverif'
+  '"putbegin"' : 'keyword.control.proverif'
+
+  '"define"': 'keyword.control.directive.proverif'
+  '"expand"': 'keyword.control.directive.proverif'
+
+  '"->"': 'keyword.operator'
+  '"<->"': 'keyword.operator'
+  '"<=>"': 'keyword.operator'
+
+  '"&&"': 'support.function.pervasives.boolean-operatons.proverif'
+  '"||"' : 'support.function.pervasives.boolean-operatons.proverif'
+
+  '";"': 'punctuation.separator'
+  '"["': 'punctuation.definition.begin.bracket.square'
+  '"]"': 'punctuation.definition.end.bracket.square'
+  '"{"': 'punctuation.section.block.begin.bracket.curly'
+  '"}"': 'punctuation.section.block.end.bracket.curly'
+  '"("': 'punctuation.section.parens.begin.bracket.round'
+  '")"': 'punctuation.section.parens.end.bracket.round'
+
+  'int': 'constant.numeric.proverif'
+
+  'name_gen' : 'support.constant.proverif'
+  'var_gen' : 'variable.other.proverif'
+  'fun_call' : 'entity.name.function.proverif'
+
+  'ident' : [{match: '^(attacker|mess)$', scopes: 'keyword.control.proverif'}
+  ]

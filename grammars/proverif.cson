@@ -1,6 +1,6 @@
-'fileTypes': ['pv']
+'fileTypes': ['pv','pvl']
 'name': 'ProVerif'
-'scopeName': 'source.proverif'
+'scopeName': 'proverif'
 
 'patterns': [
   {
