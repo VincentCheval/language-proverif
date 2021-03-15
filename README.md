@@ -17,5 +17,5 @@ Official webpage of ProVerif: https://prosecco.gforge.inria.fr/personal/bblanche
 
 ##### Changelog
 
-- 15/03/2021 - Version 1.2.0 - Rely now on a tree-sitter grammar.
+- 15/03/2021 - Version 1.8.0 - Rely now on a tree-sitter grammar.
 - 02/10/2017 - Version 1.0.0 - First release
