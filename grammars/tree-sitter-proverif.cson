@@ -80,6 +80,8 @@ scopes:
   'qterm > "<"' : 'support.function.pervasives.boolean-operatons.proverif'
   'qterm > "=>"' : 'support.function.pervasives.boolean-operatons.proverif'
   'qterm > "<="' : 'support.function.pervasives.boolean-operatons.proverif'
+  'pterm:nth-child(1)': [{match: '^(attacker|mess)$', scopes: 'keyword.control.proverif'}
+  ]
 
   'qterm > "==>"' : 'keyword.operator'
 
@@ -133,6 +135,7 @@ scopes:
   '"elimtrue"' : 'keyword.control.proverif'
   '"free"' : 'keyword.control.proverif'
   '"clauses"' : 'keyword.control.proverif'
+  '"channel"' : 'keyword.control.proverif'
   '"forall"' : 'keyword.control.proverif'
   '"otherwise"' : 'keyword.control.proverif'
   '"among"' : 'keyword.control.proverif'
@@ -159,7 +162,7 @@ scopes:
   '"public_vars"' : 'keyword.control.proverif'
   '"putbegin"' : 'keyword.control.proverif'
 
-  '"define"': 'keyword.control.directive.proverif'
+  '"def"': 'keyword.control.directive.proverif'
   '"expand"': 'keyword.control.directive.proverif'
 
   '"->"': 'keyword.operator'
@@ -185,3 +188,42 @@ scopes:
 
   'ident' : [{match: '^(attacker|mess)$', scopes: 'keyword.control.proverif'}
   ]
+folds: [
+
+  # All `comment` nodes are foldable. By default, the fold starts at
+  # the end of the node's first line, and ends at the beginning
+  # of the node's last line.
+  { type: 'comment' }
+  { type: 'type_declaration' }
+  { type: 'fun_declaration' }
+  { type: 'reduc_declaration' }
+  { type: 'const_declaration' }
+  { type: 'equation_declaration' }
+  { type: 'event_declaration' }
+  { type: 'predicate_declaration' }
+  { type: 'table_declaration' }
+  { type: 'process_declaration' }
+  { type: 'letfun_declaration' }
+  { type: 'setting_declaration' }
+  { type: 'nounif_declaration' }
+  { type: 'query_declaration' }
+  { type: 'noninterf_declaration' }
+  { type: 'weaksecret_declaration' }
+  { type: 'not_declaration' }
+  { type: 'proba_declaration' }
+  { type: 'proof_declaration' }
+  { type: 'implementation_declaration' }
+  { type: 'elim_true_declaration' }
+  { type: 'channel_declaration' }
+  { type: 'free_declaration' }
+  { type: 'clauses_declaration' }
+  { type: 'define_declaration' }
+  { type: 'expand_declaration' }
+  { type: 'lemma_declaration' }
+
+  { type: 'tprocess' }
+  { type: 'pterm' }
+]
+comments:
+  start: '(* '
+  end: ' *)'

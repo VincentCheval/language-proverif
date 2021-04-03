@@ -6,7 +6,7 @@
     "atom": "*"
   },
   "dependencies": {
-    "tree-sitter-proverif": "^1.0.8"
+    "tree-sitter-proverif": "^1.0.9"
   },
   "repository": {
     "type": "git",
